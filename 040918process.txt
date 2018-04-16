@@ -61,7 +61,7 @@ remove 040918ensembl_cds.fa and 040918ensembl_pep.fa
 cat /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/cds/041618ensembl_cds.fa /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/genomes/cds/041018ensembl_genomes_cds.fa > /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/cds/041618ensembl_all_metazoa_cds.fa
 cat /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/pep/041618ensembl_pep.fa /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/genomes/pep/041018ensembl_genomes_pep.fa > /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/pep/041618ensembl_all_metazoa_pep.fa
 
-
+5032757
 
 
 
