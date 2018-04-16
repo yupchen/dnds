@@ -1,0 +1,54 @@
+# download fasta files from ensembl(cds,proteins)
+# vertebrates eg. ftp://ftp.ensembl.org/pub/current_fasta/ailuropoda_melanoleuca/cds/*.fa.gz   list could be copied at ftp://ftp.ensembl.org/pub/current_fasta
+# invertebrates eg. ftp://ftp.ensemblgenomes.org/pub/current/metazoa/fasta/acyrthosiphon_pisum/cds/*.fa.gz  list could be copied at ftp://ftp.ensemblgenomes.org/pub/current/metazoa/fasta/
+# make download_ensembl_cds.sh using wget and the lists. In windows ubuntu
+bash download_ensembl_cds.sh
+bash download_ensembl_pep.sh
+mkdir cds
+mv ./*.cds.all.fa.gz ./cds
+cd ./cds
+gunzip *.all.fa.gz
+cat *.all.fa >> 040918ensembl_cds.fa
+
+mkdir pep
+mv ./*.pep.all.fa.gz ./pep
+gunzip *.all.fa.gz
+cat *.all.fa >> 040918ensembl_pep.fa
+
+mkdir genomes
+cd genomes
+bash download_ensemblgenomes_cds.sh
+bash download_ensemblgenomes_pep.sh
+mkdir cds
+mv ./*.cds.all.fa.gz ./cds
+cd ./cds
+gunzip *.all.fa.gz
+cat *.all.fa >> 041018ensembl_genomes_cds.fa
+
+mkdir pep
+mv ./*.pep.all.fa.gz ./pep
+gunzip *.all.fa.gz
+cat *.all.fa >> 041018ensembl_genomes_pep.fa
+
+move pep.fa together cat *pep.fa >> 041018ensembl_all_metazoa_pep.fa
+move cds.fa together cat *cds.fa >> 041018ensembl_all_metazoa_cds.fa
+
+shawn@Yuping:/mnt/c/genomes/cds$ grep ">" /mnt/d/ensembl/genomes/pep/041018ensembl_genomes_pep.fa | wc -l
+1440015
+shawn@Yuping:/mnt/c/genomes/cds$ grep ">" /mnt/d/ensembl/genomes/cds/041018ensembl_genomes_cds.fa | wc -l
+1440015
+shawn@Yuping:/mnt/c/genomes/cds$ grep ">" /mnt/d/ensembl/cds/040918ensembl_cds.fa | wc -l
+3629754
+shawn@Yuping:/mnt/c/genomes/cds$ grep ">" /mnt/d/ensembl/pep/040918ensembl_pep.fa | wc -l
+3622712
+
+
+grep -n ">" /mnt/d/ensembl/cds/041018ensembl_all_metazoa_cds.fa > /mnt/d/ensembl/cds/041018ensembl_all_metazoa_cds_headers.txt
+grep -n ">" /mnt/d/ensembl/cds/041018ensembl_all_metazoa_cds.fa | awk -F: '{print $2":"$1}' > /mnt/d/ensembl/cds/041018ensembl_all_metazoa_cds_headers1.txt
+grep -n ">" /mnt/d/ensembl/pep/041018ensembl_all_metazoa_pep.fa > /mnt/d/ensembl/pep/041018ensembl_all_metazoa_pep_headers.txt
+grep -n ">" /mnt/d/ensembl/pep/041018ensembl_all_metazoa_pep.fa | awk -F":>" '{print ">"$2":"$1}' > /mnt/d/ensembl/pep/041018ensembl_all_metazoa_pep_headers1.txt
+# first item and line#
+grep -n ">" /mnt/d/ensembl/pep/041018ensembl_all_metazoa_pep.fa | awk -F" pep " '{print $1}' | awk -F":" '{print $2":"$1}' > /mnt/d/ensembl/pep/041018ensembl_all_metazoa_pep_headers2.txt
+
+
+
