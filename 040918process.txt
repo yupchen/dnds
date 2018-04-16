@@ -51,4 +51,17 @@ grep -n ">" /mnt/d/ensembl/pep/041018ensembl_all_metazoa_pep.fa | awk -F":>" '{p
 grep -n ">" /mnt/d/ensembl/pep/041018ensembl_all_metazoa_pep.fa | awk -F" pep " '{print $1}' | awk -F":" '{print $2":"$1}' > /mnt/d/ensembl/pep/041018ensembl_all_metazoa_pep_headers2.txt
 
 
+041618 checked ensembl pep and cds files both missing ancestral_alleles. pep missing capra_hircus; cds missing nannospalax_galili.
+and there are duplications of c elegans and d melanogaster files in the ensembl and ensembl_genome database
+
+. fixed both by downloading the regarded files. and add .hide to the file names in the downloaded ensembl files of c elegans and d melanogaster
+cat *.all.fa >> 041618ensembl_cds.fa and cat *.all.fa >> 041618ensembl_pep.fa
+remove 040918ensembl_cds.fa and 040918ensembl_pep.fa
+
+cat /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/cds/041618ensembl_cds.fa /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/genomes/cds/041018ensembl_genomes_cds.fa > /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/cds/041618ensembl_all_metazoa_cds.fa
+cat /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/pep/041618ensembl_pep.fa /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/genomes/pep/041018ensembl_genomes_pep.fa > /media/yuping/Seagate\ Expansion\ Drive/040918ensembl/pep/041618ensembl_all_metazoa_pep.fa
+
+
+
+
 
